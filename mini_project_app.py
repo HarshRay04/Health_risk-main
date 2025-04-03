@@ -1,12 +1,47 @@
 import streamlit as st
 import pickle
+import joblib
 import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 import os
 
-
-model = pickle.load(open('./models/random_forest_model.pkl','rb'))
-
 st.title("Health Risk Assessment")
+
+# Upload model files
+st.sidebar.header("Upload Model Files")
+random_forest_file = st.sidebar.file_uploader("Upload Random Forest Model", type=["pkl"])
+scaler_file = st.sidebar.file_uploader("Upload Scaler Model", type=["pkl"])
+xgboost_file = st.sidebar.file_uploader("Upload XGBoost Model", type=["pkl"])
+neural_network_file = st.sidebar.file_uploader("Upload Neural Network Model", type=["h5"])
+
+# Model selection
+model_choice = st.sidebar.selectbox("Select a Model", ["Random Forest", "Scaler", "XGBoost", "Neural Network"])
+
+# Load selected model
+def load_model_file(uploaded_file, model_type):
+    if uploaded_file is not None:
+        try:
+            if model_type == "Neural Network":
+                return load_model(uploaded_file)
+            else:
+                return joblib.load(uploaded_file)
+        except Exception as e:
+            st.error(f"Error loading {model_type} model: {e}")
+    return None
+
+model = None
+if model_choice == "Random Forest":
+    model = load_model_file(random_forest_file, "Random Forest")
+elif model_choice == "Scaler":
+    model = load_model_file(scaler_file, "Scaler")
+elif model_choice == "XGBoost":
+    model = load_model_file(xgboost_file, "XGBoost")
+elif model_choice == "Neural Network":
+    model = load_model_file(neural_network_file, "Neural Network")
+
+if model:
+    st.success(f"{model_choice} model loaded successfully!")
 
 # Input fields
 bmi = st.number_input("BMI", min_value=0.0, step=0.1, format="%.1f")
@@ -54,14 +89,17 @@ if st.button("Submit"):
 
 # Risk Level Prediction Button
 if st.button("Calculate Risk Level"):
-    if 'model' in locals():  # Ensure the model is loaded
+    if model:  # Ensure the model is loaded
         input_data = np.array([[bmi, heart_rate, systolic, diastolic, oxygen_saturation, 
                                 respiratory_rate, blood_sugar, cholesterol, 
                                 exercise_val, diet_val, sleep_val]])
         try:
-            risk_prediction = model.predict(input_data)[0]
+            if model_choice == "Neural Network":
+                risk_prediction = model.predict(input_data)[0][0]
+            else:
+                risk_prediction = model.predict(input_data)[0]
             st.write(f"### Predicted Risk Level: **{risk_prediction}**")
         except Exception as e:
             st.error(f"Error during prediction: {e}")
     else:
-        st.error("Model not loaded. Please check for errors.")
+        st.error("Model not loaded. Please upload and select a model.")
