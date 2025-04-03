@@ -55,16 +55,13 @@ cholesterol = st.number_input("Cholesterol Level (mg/dL)", min_value=0, step=1)
 # Categorical inputs
 exercises = st.radio("Do you exercise regularly?", ["Yes", "No"])
 follows_diet = st.radio("Do you follow a healthy diet?", ["Yes", "No"])
-sleep_quality = st.selectbox("Sleep Quality", ["Poor", "Average", "Good"])
 
 # Convert categorical inputs to numerical values
 exercise_map = {"Yes": 1, "No": 0}
 diet_map = {"Yes": 1, "No": 0}
-sleep_map = {"Poor": 0, "Average": 1, "Good": 2}
 
 exercise_val = exercise_map[exercises]
 diet_val = diet_map[follows_diet]
-sleep_val = sleep_map[sleep_quality]
 
 # Process Blood Pressure (convert to two values: systolic and diastolic)
 try:
@@ -85,14 +82,13 @@ if st.button("Submit"):
     st.write(f"- **Cholesterol Level:** {cholesterol} mg/dL")
     st.write(f"- **Exercises Regularly:** {exercises}")
     st.write(f"- **Follows Diet:** {follows_diet}")
-    st.write(f"- **Sleep Quality:** {sleep_quality}")
 
 # Risk Level Prediction Button
 if st.button("Calculate Risk Level"):
     if model:  # Ensure the model is loaded
         input_data = np.array([[bmi, heart_rate, systolic, diastolic, oxygen_saturation, 
                                 respiratory_rate, blood_sugar, cholesterol, 
-                                exercise_val, diet_val, sleep_val]])
+                                exercise_val, diet_val]])
         try:
             if model_choice == "Neural Network":
                 risk_prediction = model.predict(input_data)[0][0]
