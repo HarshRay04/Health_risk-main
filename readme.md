@@ -156,4 +156,11 @@ Email: gauravkr7103@gmail.com || 2205209@kiit.ac.in
 
 GitHub: [@Gaurav-kr7103](https://github.com/Gaurav-kr7103)
 
+Author: Aakash Raj
+
+Email: rajakash607@gmail.com || 2205695@kiit.ac.in
+
+GitHub: [@rajakash607](https://github.com/rajakash607)
+
+
 
