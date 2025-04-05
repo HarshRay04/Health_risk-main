@@ -144,8 +144,6 @@ The dataset source (add link if publicly available)
 
 # 📬 Contact
 Author: Harsh Ray
-
-Email: harshray04@gmail.com
-
+Email: harshray04@gmail.com || 22052297@kiit.ac.in
 GitHub: [@HarshRay04](https://github.com/HarshRay04)
 
