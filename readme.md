@@ -162,5 +162,11 @@ Email: rajakash607@gmail.com || 2205695@kiit.ac.in
 
 GitHub: [@rajakash607](https://github.com/rajakash607)
 
+Author: Aman Kumar
+
+Email: kumaaraman0912@gmail.com || 22051663@kiit.ac.in
+
+GitHub: [@ninjamaster831](https://github.com/ninjamaster831/)
+
 
 
