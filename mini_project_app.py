@@ -94,7 +94,16 @@ if st.button("Calculate Risk Level"):
                 risk_prediction = model.predict(input_data)[0][0]
             else:
                 risk_prediction = model.predict(input_data)[0]
-            st.write(f"### Predicted Risk Level: **{risk_prediction}**")
+            
+            # Convert risk level to text
+            risk_levels = {0: "Low Risk", 1: "Medium Risk", 2: "High Risk"}
+            policy_prices = {0: "High Price", 1: "Medium Price", 2: "Low Price"}
+            
+            risk_text = risk_levels.get(risk_prediction, "Unknown")
+            policy_text = policy_prices.get(risk_prediction, "Unknown")
+            
+            st.write(f"### Predicted Risk Level: **{risk_text}**")
+            st.write(f"### Suggested Policy Price: **{policy_text}**")
         except Exception as e:
             st.error(f"Error during prediction: {e}")
     else:
