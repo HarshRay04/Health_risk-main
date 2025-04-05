@@ -149,3 +149,11 @@ Email: harshray04@gmail.com || 22052297@kiit.ac.in
 
 GitHub: [@HarshRay04](https://github.com/HarshRay04)
 
+
+Author: Gaurav Kumar
+
+Email: gauravkr7103@gmail.com || 2205209@kiit.ac.in
+
+GitHub: [@Gaurav-kr7103](https://github.com/Gaurav-kr7103)
+
+
