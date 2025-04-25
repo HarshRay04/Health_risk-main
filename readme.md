@@ -168,5 +168,11 @@ Email: kumaaraman0912@gmail.com || 22051663@kiit.ac.in
 
 GitHub: [@ninjamaster831](https://github.com/ninjamaster831/)
 
+Author: Harsh Raj
+
+Email: harshraj70500@gmail.com || 22051681@kiit.ac.in
+
+GitHub: [@harshcode07](https://github.com/harshcode07)
+
 
 
